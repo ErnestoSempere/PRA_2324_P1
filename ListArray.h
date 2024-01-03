@@ -14,7 +14,7 @@ class ListArray : public List<T> {
 		for(int i = 0; i < max; i++){
 			a[i] = arr[i];
 		}
-		delete[] arr;
+		delete []arr;
 		arr = a;
 		max = new_size;
 	}
@@ -22,6 +22,8 @@ class ListArray : public List<T> {
     public:
         ListArray(){
 		arr = new T [MINSIZE];
+		max = MINSIZE;
+		n = 0;
 	}	
 
 	~ListArray(){
@@ -38,7 +40,11 @@ class ListArray : public List<T> {
 	}
 
 	friend std::ostream& operator<<(std::ostream &out, const ListArray<T> &list){
-		out << list.arr[0];
+		out << "List [ ";
+		for(int i = 0; i < list.n; i++){
+			out << list.arr[i] << " ";
+		}
+		out << "]" << std::endl;
 		return out;
 	}
     
